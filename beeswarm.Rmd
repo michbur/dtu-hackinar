@@ -1,0 +1,62 @@
+---
+title: "Bee swarms instead of clouds of points"
+author: Michał Burdukiewicz
+output: html_document
+---
+
+<style>
+.column-left{
+  float: left;
+  width: 33%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 33%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 33%;
+  text-align: left;
+}
+</style>
+
+```{r}
+library(ggplot2)
+p <- ggplot(CO2, aes(x = Type, y = uptake, colour = Treatment)) 
+```
+
+<div class="column-left">
+```{r}
+# 1. A very basic plot.
+p <- ggplot(CO2, aes(x = Type, 
+                     y = uptake, 
+                     colour = Treatment)) 
+p + geom_point() 
+
+```
+</div>
+
+
+
+<div class="column-center">
+```{r}
+# 2. Jitter overlapping points.
+set.seed(1)
+# random seed for to reproduce the jitter
+p + geom_point(position = "jitter") 
+```
+</div>
+
+
+<div class="column-right">
+```{r}
+# 3. Spread points pseudorandomly with a new ggplot2 geom.
+# See also: vipor::offsetX
+library(ggbeeswarm)
+p + geom_quasirandom(method = "frowney")
+```
+</div>
+
+
