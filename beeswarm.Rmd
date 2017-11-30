@@ -44,7 +44,7 @@ p + geom_point()
 ```{r}
 # 2. Jitter overlapping points.
 set.seed(1)
-# random seed for to reproduce the jitter
+# random seed to reproduce the jitter
 p + geom_point(position = "jitter") 
 ```
 </div>
